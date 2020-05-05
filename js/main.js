@@ -55,10 +55,13 @@ function autorized() {
 
 
 function noAutorized() {
+    loginInput.required = true;
+    // loginInput.setAttribute("required", "");
     console.log("Не авторизован");
 
     function logIn(event) {
         event.preventDefault();
+
         login = loginInput.value;
 
         localStorage.setItem("gloDelivery", login);
