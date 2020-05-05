@@ -85,8 +85,6 @@ function noAutorized() {
         } else {
             loginInput.style.borderColor = "red";
         }
-
-
     }
 
     buttonAuth.addEventListener("click", toggleModalAuth);
@@ -103,4 +101,6 @@ function checkAuth() {
 }
 
 checkAuth();
+
+
 
