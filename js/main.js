@@ -23,6 +23,7 @@ let login = localStorage.getItem("gloDelivery");
 
 
 function toggleModalAuth() {
+    loginInput.style.borderColor = "";
     modalAuth.classList.toggle("is-open");
 }
 
@@ -53,28 +54,39 @@ function autorized() {
 
 }
 
+function maskInput(str) { // функция для проверки логина по маске
+    return !!str;
+}
+
 
 function noAutorized() {
-    loginInput.required = true;
+    // loginInput.required = true;
     // loginInput.setAttribute("required", "");
     console.log("Не авторизован");
 
     function logIn(event) {
         event.preventDefault();
 
-        login = loginInput.value;
+        login = loginInput.value.trim();
 
-        localStorage.setItem("gloDelivery", login);
+        if (maskInput(login)) {
 
-        toggleModalAuth();
+            localStorage.setItem("gloDelivery", login);
 
-        buttonAuth.removeEventListener("click", toggleModalAuth);
-        closeAuth.removeEventListener("click", toggleModalAuth);
-        logInForm.removeEventListener("submit", logIn);
+            toggleModalAuth();
 
-        logInForm.reset();
+            buttonAuth.removeEventListener("click", toggleModalAuth);
+            closeAuth.removeEventListener("click", toggleModalAuth);
+            logInForm.removeEventListener("submit", logIn);
 
-        checkAuth();
+            logInForm.reset();
+
+            checkAuth();
+        } else {
+            loginInput.style.borderColor = "red";
+        }
+
+
     }
 
     buttonAuth.addEventListener("click", toggleModalAuth);
